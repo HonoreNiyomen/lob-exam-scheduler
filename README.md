@@ -4,13 +4,15 @@ A web-based scheduling system built with **Elixir** and **Phoenix LiveView** tha
 
 ---
 
-## 🚀 Features
+## 🚀 Current Features
 
-- 👨‍🏫 Admin dashboard for managing subjects, rooms, students, and lecturers
-- 🧠 Automatic conflict detection (room clashes, double-booked students or staff)
-- 📅 Real-time timetable generation with Phoenix LiveView
-- 🔔 Optional email or browser notifications before exam dates
 - 🔐 Secure login for students and administrators
+- 👨‍🏫 Admin dashboard for managing subjects, rooms, students, and lecturers
+- 📅 Real-time timetable generation with Phoenix LiveView
+
+## 🚀 Upcoming Features
+- 🧠 Automatic conflict detection (room clashes, double-booked students or staff)
+- 🔔 Optional email or browser notifications before exam dates
 - 📊 Future: Export schedules (PDF/CSV), integrate calendar sync
 
 ---
