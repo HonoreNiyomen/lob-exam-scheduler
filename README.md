@@ -34,3 +34,9 @@ A web-based scheduling system built with **Elixir** and **Phoenix LiveView** tha
    ```bash
    git clone https://github.com/HonoreNiyomen/lob-exam-scheduler.git
    cd lob-exam-scheduler
+
+2. **To start your Phoenix server**
+   ```bash
+   mix setup ## to install and setup dependencies
+   mix phx.server ## or inside IEx with
+   iex -S mix phx.server
