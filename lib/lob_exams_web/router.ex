@@ -1,6 +1,8 @@
 defmodule LobExamsWeb.Router do
   use LobExamsWeb, :router
 
+  import LobExamsWeb.UserAuth
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -10,20 +12,57 @@ defmodule LobExamsWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :admin_browser do
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_live_flash
+    plug :put_root_layout, html: {LobExamsWeb.Layouts, :auth_root}
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+    plug :fetch_current_user
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   scope "/", LobExamsWeb do
-    pipe_through :browser
+    pipe_through [:browser, :redirect_if_user_is_authenticated]
 
-    get "/", PageController, :home
+    live_session :redirect_if_user_is_authenticated,
+      on_mount: [{LobExamsWeb.UserAuth, :redirect_if_user_is_authenticated}] do
+        live "/", HomepageLive
+        live "/users/register", UserRegistrationLive, :new
+        live "/users/log_in", UserLoginLive, :new
+        live "/users/reset_password", UserForgotPasswordLive, :new
+        live "/users/reset_password/:token", UserResetPasswordLive, :edit
+    end
+
+    post "/users/log_in", UserSessionController, :create
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", LobExamsWeb do
-  #   pipe_through :api
-  # end
+  scope "/", LobExamsWeb do
+    pipe_through [:admin_browser, :require_authenticated_user]
+
+    live_session :require_authenticated_user,
+      on_mount: [{LobExamsWeb.UserAuth, :ensure_authenticated}] do
+        live "/dashboard", AdminDashboardLive
+        live "/users/settings", UserSettingsLive, :edit
+        live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+    end
+  end
+
+  scope "/", LobExamsWeb do
+    pipe_through [:admin_browser]
+
+    delete "/users/log_out", UserSessionController, :delete
+
+    live_session :current_user,
+      on_mount: [{LobExamsWeb.UserAuth, :mount_current_user}] do
+        live "/users/confirm/:token", UserConfirmationLive, :edit
+        live "/users/confirm", UserConfirmationInstructionsLive, :new
+    end
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:lob_exams, :dev_routes) do
