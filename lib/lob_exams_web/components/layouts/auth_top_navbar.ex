@@ -1,6 +1,4 @@
 defmodule LobExamsWeb.Layouts.AdminTopNav do
-      alias Postgrex.Notifications
-      alias Expo.Messages
   use LobExamsWeb, :html
 
 
