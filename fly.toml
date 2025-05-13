@@ -10,7 +10,7 @@ kill_signal = 'SIGTERM'
 [build]
   dockerfile = "Dockerfile"
 [deploy]
-  release_command = '/app/bin/lob_exams eval LobExams.Release.migrate'
+  release_command = '/app/bin/migrate'
 
 [env]
   PHX_HOST = 'lob-exam-scheduler.fly.dev'
