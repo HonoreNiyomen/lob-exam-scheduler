@@ -11,12 +11,12 @@ kill_signal = 'SIGTERM'
   dockerfile = "Dockerfile"
   
 [deploy]
-  release_command = '/app/bin/lob_exams eval LobExams.Release.migrate'
+  #release_command = '/app/bin/lob_exams eval LobExams.Release.migrate'
 
 [env]
   PHX_HOST = 'lob-exam-scheduler.fly.dev'
   PORT = '8080'
-  DATABASE_URL = 'ecto://postgres:WhOoTm1KrW8tVfj@summer-wind-1325/lob_exams_dev'
+  #DATABASE_URL = 'ecto://postgres:WhOoTm1KrW8tVfj@summer-wind-1325/lob_exams_dev'
   #DATABASE_URL = 'ecto://postgres:WhOoTm1KrW8tVfj@summer-wind-1325.flycast:5432/lob_exams_dev'
 
 [http_service]
