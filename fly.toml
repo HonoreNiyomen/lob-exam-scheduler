@@ -9,9 +9,9 @@ kill_signal = 'SIGTERM'
 
 [build]
   dockerfile = "Dockerfile"
-
+  
 [deploy]
-  release_command = 'rel/overlays/bin/migrate'
+  release_command = '/app/bin/migrate'
 
 [env]
   PHX_HOST = 'lob-exam-scheduler.fly.dev'
