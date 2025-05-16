@@ -1,4 +1,4 @@
-defmodule LobExamsWeb.UserSettingsLive do
+defmodule LobExamsWeb.Live.UserSettings do
   use LobExamsWeb, :live_view
 
   alias LobExams.Accounts

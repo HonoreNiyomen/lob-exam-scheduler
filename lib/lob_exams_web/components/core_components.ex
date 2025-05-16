@@ -329,20 +329,31 @@ defmodule LobExamsWeb.CoreComponents do
   end
 
   def input(%{type: "select"} = assigns) do
+    assigns =
+      assigns
+      |> assign_new(:prompt, fn -> nil end)
+      |> assign_new(:options, fn -> [] end)
+      |> assign_new(:value, fn -> nil end)
+
     ~H"""
-    <div>
-      <.label for={@id}>{@label}</.label>
-      <select
-        id={@id}
-        name={@name}
-        class="mt-2 block w-full rounded-md border border-gray-300 bg-white shadow-sm focus:border-zinc-400 focus:ring-0 sm:text-sm"
-        multiple={@multiple}
-        {@rest}
-      >
-        <option :if={@prompt} value="">{@prompt}</option>
-        {Phoenix.HTML.Form.options_for_select(@options, @value)}
-      </select>
-      <.error :for={msg <- @errors}>{msg}</.error>
+    <div class="space-y-1">
+      <.label for={@id}><%= @label %></.label>
+      <div class="relative">
+        <select
+          id={@id}
+          name={@name}
+          class="mt-1 block w-full rounded-lg px-4 py-2 text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6"
+          multiple={@multiple}
+          {@rest}
+        >
+          <option :if={@prompt} value=""><%= @prompt %></option>
+          <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+
+        </div>
+      </div>
+      <.error :for={msg <- @errors}><%= msg %></.error>
     </div>
     """
   end

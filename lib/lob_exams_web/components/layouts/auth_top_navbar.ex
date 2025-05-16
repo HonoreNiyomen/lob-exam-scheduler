@@ -3,9 +3,7 @@ defmodule LobExamsWeb.Layouts.AdminTopNav do
 
 
   def admin_top_nav(assigns) do
-    assigns = assign_new(assigns, :current_page, fn -> "dashboard" end)
     ~H"""
-
     <!-- Top Navigation -->
     <header class="bg-gray-800 border-b border-gray-700 p-4 flex items-center justify-between">
       <!-- Mobile menu button -->
@@ -20,12 +18,12 @@ defmodule LobExamsWeb.Layouts.AdminTopNav do
         </button>
       </div>
 
-        <div class="hidden md:flex md:flex-col p-1 border-b border-gray-700">
-          <h1 class="text-xl font-bold text-indigo-400">LOB Flow</h1>
-          <p class="text-xs text-gray-400">Exam Scheduling Platform</p>
-        </div>
+      <div class="hidden md:flex md:flex-col p-1 border-b border-gray-700">
+        <h1 class="text-xl font-bold text-indigo-400">LOB Flow</h1>
+        <p class="text-xs text-gray-400">Exam Scheduling Platform</p>
+      </div>
 
-      <h2 class="text-xl font-semibold">Dashboard</h2>
+      <h2 class="text-xl font-semibold">{@current_page}</h2>
 
       <div class="flex items-center space-x-4">
         <div class="hidden md:flex relative inline-flex items-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-blue-700 focus:outline-none">
@@ -41,10 +39,10 @@ defmodule LobExamsWeb.Layouts.AdminTopNav do
           </svg>
           <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-green-500"></span>
         </div>
-        <div class="relative" data-dropdown="setting">
+        <div class="relative" data-dropdown="settings">
           <!-- Settings Button -->
           <button class="relative inline-flex items-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-blue-700 focus:outline-none"
-            phx-click="toggle_settings_dropdown">
+            data-dropdown-toggle="settings">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -52,52 +50,52 @@ defmodule LobExamsWeb.Layouts.AdminTopNav do
           </button>
 
           <!-- Dropdown Menu -->
-          <%= if @dropdown_open do %>
-            <div class="absolute right-0 mt-2 w-48 bg-gray-900 rounded-lg shadow-lg border border-gray-800 py-1 z-50"
-              data-dropdown-menu="settings">
+          <div class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg z-50 py-1 border border-gray-700 font-bold"
+            data-dropdown-menu="settings">
 
-              <!-- Profile -->
-              <a href="#" class="flex items-center px-4 py-3 text-sm text-white-700 hover:bg-gray-700">
-                <i class="fas fa-user-circle mr-3 text-white-500"></i>
-                Profile Settings
-              </a>
+            <!-- Profile -->
+            <a href="/general_settings" class="flex items-center px-4 py-3 text-sm text-white-700 hover:bg-gray-700">
+              <i class="fas fa-user-circle mr-3 text-white-500"></i>
+              Profile Settings
+            </a>
 
-              <!-- Theme -->
-              <a href="#" class="flex items-center px-4 py-3 text-sm text-white-700 hover:bg-gray-800">
-                <i class="fas fa-moon mr-3 text-white-500"></i>
-                Theme
-              </a>
+            <!-- Theme -->
+            <a href="#" class="flex items-center px-4 py-3 text-sm text-white-700 hover:bg-gray-700">
+              <i class="fas fa-moon mr-3 text-white-500"></i>
+              Theme
+            </a>
 
-              <!-- Notifications -->
-              <a href="#" class="md:hidden flex items-center px-4 py-3 text-sm text-white-700 hover:bg-gray-800">
-                <i class="fas fa-user-circle mr-3 text-white-500"></i>
-                Notifications
-              </a>
+            <!-- Notifications -->
+            <a href="#" class="md:hidden flex items-center px-4 py-3 text-sm text-white-700 hover:bg-gray-700">
+              <i class="fas fa-user-circle mr-3 text-white-500"></i>
+              Notifications
+            </a>
 
-              <!-- Inbox -->
-              <a href="#" class="md:hidden flex items-center px-4 py-3 text-sm text-white-700 hover:bg-gray-800">
-                <i class="fas fa-moon mr-3 text-white-500"></i>
-                Messages
-              </a>
+            <!-- Inbox -->
+            <a href="#" class="md:hidden flex items-center px-4 py-3 text-sm text-white-700 hover:bg-gray-700">
+              <i class="fas fa-messages mr-3"></i>
+              Messages
+            </a>
 
-              <!-- Help -->
-              <a href="#" class="flex items-center px-4 py-3 text-sm text-white-700 hover:bg-gray-800">
-                <i class="fas fa-question-circle mr-3 text-white-500"></i>
-                Help & Support
-              </a>
+            <!-- Help -->
+            <a href="#" class="flex items-center px-4 py-3 text-sm text-white-700 hover:bg-gray-700">
+              <i class="fas fa-question-circle mr-3 text-white-500"></i>
+              Help & Support
+            </a>
 
-              <!-- Logout -->
-              <.link
-                href="/users/log_out"
-                method="delete"
-                class="flex items-center w-full px-4 py-3 text-sm text-left text-red-600 hover:bg-gray-800"
-              >
-                <i class="fas fa-sign-out-alt mr-3"></i>
-                Logout
-              </.link>
+            <div class="border-t border-gray-700 my-1"></div>
 
-            </div>
-          <% end %>
+            <!-- Logout -->
+            <.link
+              href="/users/log_out"
+              method="delete"
+              class="flex items-center w-full px-4 py-3 text-sm text-left text-red-600 hover:bg-gray-700"
+            >
+              <i class="fas fa-sign-out-alt mr-3 text-lg"></i>
+              Logout
+            </.link>
+          </div>
+
         </div>
       </div>
     </header>

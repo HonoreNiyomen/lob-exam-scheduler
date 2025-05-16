@@ -31,18 +31,27 @@
 
           <!-- Desktop Links -->
           <div class="hidden md:flex md:items-center md:space-x-4">
-            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900">Home</a>
-            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Features</a>
-            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Developer</a>
-            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contact</a>
+            <a href="/" class={["px-3 py-2 rounded-md text-sm font-medium text-gray-300", @conn.request_path == "/" && "bg-gray-900",
+                        @conn.request_path != "/" && "hover:text-white hover:bg-gray-700"]}>Home</a>
+
+            <a href="/features" class={["px-3 py-2 rounded-md text-sm font-medium text-gray-300", @conn.request_path == "/features" && "bg-gray-900",
+                        @conn.request_path != "/features" && "hover:text-white hover:bg-gray-700"]}>Features</a>
+
+            <a href="/developers" class={["px-3 py-2 rounded-md text-sm font-medium text-gray-300", @conn.request_path == "/developers" && "bg-gray-900",
+                        @conn.request_path != "/developers" && "hover:text-white hover:bg-gray-700"]}>Developer</a>
+
+            <a href="/contact" class={["px-3 py-2 rounded-md text-sm font-medium text-gray-300", @conn.request_path == "/contact" && "bg-gray-900",
+                        @conn.request_path != "/contact" && "hover:text-white hover:bg-gray-700"]}>Contact</a>
           </div>
 
           <!-- Desktop Auth Buttons -->
           <div class="hidden md:flex md:items-center md:space-x-2">
-            <a href="/users/log_in" class="px-4 py-2 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+            <a href="/users/log_in" class={["px-4 py-2 rounded-md text-sm font-medium text-white bg-indigo-500", @conn.request_path == "/users/log_in" && "hidden",
+                @conn.request_path == "/users/register" && "hidden"]}>
               Login
             </a>
-            <a href="/users/register" class="px-4 py-2 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+            <a href="/users/register" class={["px-4 py-2 rounded-md text-sm font-medium text-white bg-indigo-500", @conn.request_path == "/users/register" && "hidden",
+                @conn.request_path == "/users/log_in" && "hidden"]}>
               Register
             </a>
           </div>

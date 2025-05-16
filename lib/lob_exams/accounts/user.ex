@@ -6,14 +6,19 @@ defmodule LobExams.Accounts.User do
     field :username, :string
     field :firstname, :string
     field :lastname, :string
-    field :university, :string
-    field :classes, :string
     field :role, :string
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :current_password, :string, virtual: true, redact: true
     field :confirmed_at, :utc_datetime
+
+    belongs_to :university, LobExams.University
+
+    many_to_many :course_modules, LobExams.CourseModule,
+      join_through: "users_courses",
+      on_delete: :delete_all,
+      on_replace: :delete
 
     timestamps(type: :utc_datetime)
   end
@@ -42,8 +47,10 @@ defmodule LobExams.Accounts.User do
       Defaults to `true`.
   """
   def registration_changeset(user, attrs, opts \\ []) do
+    IO.inspect(attrs, label: "register_user changeset")
+
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:email, :password, :firstname, :lastname, :role, :university_id, :username])
     |> validate_email(opts)
     |> validate_password(opts)
   end

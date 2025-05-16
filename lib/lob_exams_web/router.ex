@@ -36,19 +36,27 @@ defmodule LobExamsWeb.Router do
         live "/users/log_in", UserLoginLive, :new
         live "/users/reset_password", UserForgotPasswordLive, :new
         live "/users/reset_password/:token", UserResetPasswordLive, :edit
+        live "/features", Live.Features, :new
+        live "/developers", Live.Developers, :new
+        live "/contact", Live.Contacts, :new
     end
 
     post "/users/log_in", UserSessionController, :create
   end
 
-  scope "/", LobExamsWeb do
+  scope "/", LobExamsWeb.Live do
     pipe_through [:admin_browser, :require_authenticated_user]
 
     live_session :require_authenticated_user,
       on_mount: [{LobExamsWeb.UserAuth, :ensure_authenticated}] do
-        live "/dashboard", AdminDashboardLive
-        live "/users/settings", UserSettingsLive, :edit
-        live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+        live "/dashboard", AdminDashboard
+        live "/schedule_exams", ScheduleExams
+        live "/invigilators", Invigilators
+        live "/rooms", Rooms
+        live "/course_modules", CourseModules
+        live "/general_settings", Settings
+        live "/users/settings", UserSettings, :edit
+        live "/users/settings/confirm_email/:token", UserSettings, :confirm_email
     end
   end
 
