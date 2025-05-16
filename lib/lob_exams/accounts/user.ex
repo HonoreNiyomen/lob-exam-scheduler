@@ -47,8 +47,6 @@ defmodule LobExams.Accounts.User do
       Defaults to `true`.
   """
   def registration_changeset(user, attrs, opts \\ []) do
-    IO.inspect(attrs, label: "register_user changeset")
-
     user
     |> cast(attrs, [:email, :password, :firstname, :lastname, :role, :university_id, :username])
     |> validate_email(opts)
