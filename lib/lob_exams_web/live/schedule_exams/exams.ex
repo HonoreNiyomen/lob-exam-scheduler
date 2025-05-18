@@ -13,11 +13,15 @@ defmodule LobExamsWeb.Live.ScheduleExams do
   @impl true
   def render(assigns) do
     case assigns[:current_user].role do
+      "admin" ->
+        ~H"""
+        {ASE.admin_exams(assigns)}
+        """
       "lecturer" ->
         ~H"""
         {LSE.lecturer_exams(assigns)}
         """
-      "admin" ->
+      "university" ->
         ~H"""
         {ISE.institution_exams(assigns)}
         """

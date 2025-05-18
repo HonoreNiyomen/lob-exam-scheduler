@@ -3,228 +3,254 @@ defmodule LobExamsWeb.Live.InstitutionDashboard do
 
   def institution_dashboard(assigns) do
     ~H"""
-    <!-- Stats Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-      <div class="bg-gray-800 rounded-lg p-6 border-l-4 border-indigo-500">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm font-medium text-gray-400">Scheduled Exams</p>
-            <p class="text-2xl font-bold mt-1">24</p>
+    <%!-- <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+      <!-- Hero Header with University Branding -->
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 bg-gradient-to-r from-blue-900/30 to-indigo-900/30 rounded-xl p-6 border border-blue-800/30">
+        <div>
+          <div class="flex items-center space-x-3 mb-2">
+            <h1 class="text-2xl font-bold text-white">Welcome to <span class="text-blue-300">Stanford University</span></h1>
           </div>
-          <div class="p-3 rounded-full bg-indigo-900/50 text-indigo-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
+          <p class="text-gray-300 max-w-2xl">Manage academic operations, track student performance, and oversee institutional analytics from this centralized dashboard.</p>
+        </div>
+        <div class="mt-4 md:mt-0">
+          <button class="bg-white hover:bg-gray-100 text-blue-900 px-4 py-2 rounded-lg flex items-center transition-all shadow-lg">
+            <i data-feather="bell" class="w-4 h-4 mr-2"></i>
+            Announcements
+          </button>
+        </div>
+      </div>
+
+      <!-- 🔥 Key Academic Metrics -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <!-- Total Students -->
+        <div class="bg-gradient-to-br from-blue-900/50 to-gray-800 rounded-xl p-6 shadow-lg border border-blue-900/30 hover:scale-[1.02] transition-transform">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-gray-400">Total Students</p>
+              <h3 class="text-2xl font-bold text-white mt-1">17,246</h3>
+              <p class="text-xs text-gray-400 mt-2 flex items-center">
+                <i data-feather="trending-up" class="w-3 h-3 mr-1 text-green-400"></i>
+                12% increase YOY
+              </p>
+            </div>
+            <div class="bg-blue-600/20 p-3 rounded-full">
+              <i data-feather="users" class="w-6 h-6 text-blue-400"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Faculty Count -->
+        <div class="bg-gradient-to-br from-purple-900/50 to-gray-800 rounded-xl p-6 shadow-lg border border-purple-900/30 hover:scale-[1.02] transition-transform">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-gray-400">Faculty Members</p>
+              <h3 class="text-2xl font-bold text-white mt-1">2,184</h3>
+              <p class="text-xs text-gray-400 mt-2 flex items-center">
+                <i data-feather="user-check" class="w-3 h-3 mr-1 text-purple-400"></i>
+                94% PhD holders
+              </p>
+            </div>
+            <div class="bg-purple-600/20 p-3 rounded-full">
+              <i data-feather="award" class="w-6 h-6 text-purple-400"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Courses Offered -->
+        <div class="bg-gradient-to-br from-green-900/50 to-gray-800 rounded-xl p-6 shadow-lg border border-green-900/30 hover:scale-[1.02] transition-transform">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-gray-400">Courses Offered</p>
+              <h3 class="text-2xl font-bold text-white mt-1">362</h3>
+              <p class="text-xs text-gray-400 mt-2 flex items-center">
+                <i data-feather="book-open" class="w-3 h-3 mr-1 text-green-400"></i>
+                28 new this semester
+              </p>
+            </div>
+            <div class="bg-green-600/20 p-3 rounded-full">
+              <i data-feather="book" class="w-6 h-6 text-green-400"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Graduation Rate -->
+        <div class="bg-gradient-to-br from-amber-900/50 to-gray-800 rounded-xl p-6 shadow-lg border border-amber-900/30 hover:scale-[1.02] transition-transform">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-gray-400">Graduation Rate</p>
+              <h3 class="text-2xl font-bold text-white mt-1">94%</h3>
+              <p class="text-xs text-gray-400 mt-2 flex items-center">
+                <i data-feather="graduation-cap" class="w-3 h-3 mr-1 text-amber-400"></i>
+                National rank: #3
+              </p>
+            </div>
+            <div class="bg-amber-600/20 p-3 rounded-full">
+              <i data-feather="bar-chart-2" class="w-6 h-6 text-amber-400"></i>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="bg-gray-800 rounded-lg p-6 border-l-4 border-green-500">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm font-medium text-gray-400">Available Rooms</p>
-            <p class="text-2xl font-bold mt-1">12</p>
+      <!-- 📊 Main Dashboard Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <!-- Enrollment Trends -->
+        <div class="lg:col-span-2 bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold text-white">Enrollment Trends</h2>
+            <div class="flex space-x-2">
+              <button class="px-3 py-1 text-xs rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600">Programs</button>
+              <button class="px-3 py-1 text-xs rounded-lg bg-blue-600 text-white">Departments</button>
+              <button class="px-3 py-1 text-xs rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600">Demographics</button>
+            </div>
           </div>
-          <div class="p-3 rounded-full bg-green-900/50 text-green-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-            </svg>
+          <div class="h-64 bg-gray-900/50 rounded-lg border border-gray-700 flex items-center justify-center">
+            <!-- Chart would go here -->
+            <div class="text-center p-4">
+              <i data-feather="trending-up" class="w-12 h-12 text-blue-400 mx-auto mb-2"></i>
+              <p class="text-gray-400">Student enrollment visualization</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming Academic Events -->
+        <div class="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold text-white">Upcoming Events</h2>
+            <button class="text-blue-400 hover:text-blue-300 text-sm flex items-center">
+              View all <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+            </button>
+          </div>
+          <div class="space-y-4">
+            <!-- Event 1 -->
+            <div class="flex items-start space-x-3 p-3 hover:bg-gray-700/50 rounded-lg transition-colors cursor-pointer">
+              <div class="bg-blue-600/10 p-2 rounded-lg">
+                <i data-feather="calendar" class="w-5 h-5 text-blue-400"></i>
+              </div>
+              <div>
+                <h3 class="text-sm font-medium text-white">Fall Semester Begins</h3>
+                <p class="text-xs text-gray-400 mt-1 flex items-center">
+                  <i data-feather="clock" class="w-3 h-3 mr-1"></i>
+                  Aug 28, 2023 • 8:00 AM
+                </p>
+              </div>
+            </div>
+
+            <!-- Event 2 -->
+            <div class="flex items-start space-x-3 p-3 hover:bg-gray-700/50 rounded-lg transition-colors cursor-pointer">
+              <div class="bg-purple-600/10 p-2 rounded-lg">
+                <i data-feather="mic" class="w-5 h-5 text-purple-400"></i>
+              </div>
+              <div>
+                <h3 class="text-sm font-medium text-white">Guest Lecture: AI Ethics</h3>
+                <p class="text-xs text-gray-400 mt-1 flex items-center">
+                  <i data-feather="clock" class="w-3 h-3 mr-1"></i>
+                  Sep 5, 2023 • 3:30 PM
+                </p>
+              </div>
+            </div>
+
+            <!-- Event 3 -->
+            <div class="flex items-start space-x-3 p-3 hover:bg-gray-700/50 rounded-lg transition-colors cursor-pointer">
+              <div class="bg-green-600/10 p-2 rounded-lg">
+                <i data-feather="book-open" class="w-5 h-5 text-green-400"></i>
+              </div>
+              <div>
+                <h3 class="text-sm font-medium text-white">Midterm Examinations</h3>
+                <p class="text-xs text-gray-400 mt-1 flex items-center">
+                  <i data-feather="clock" class="w-3 h-3 mr-1"></i>
+                  Oct 16-20, 2023
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="bg-gray-800 rounded-lg p-6 border-l-4 border-blue-500">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm font-medium text-gray-400">Active Invigilators</p>
-            <p class="text-2xl font-bold mt-1">18</p>
-          </div>
-          <div class="p-3 rounded-full bg-blue-900/50 text-blue-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-          </div>
+      <!-- 🚀 Quick Access Tiles -->
+      <div class="mb-8">
+        <h2 class="text-xl font-semibold text-white mb-6">Academic Quick Links</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <!-- Tile 1 -->
+          <a href="#" class="bg-gradient-to-br from-blue-900/50 to-gray-800 hover:from-blue-900/70 rounded-xl p-6 shadow-lg border border-blue-900/30 flex flex-col items-center justify-center transition-all hover:scale-[1.03] group">
+            <div class="bg-blue-600/20 p-4 rounded-full mb-3 group-hover:bg-blue-600/30 transition-colors">
+              <i data-feather="book" class="w-6 h-6 text-blue-400"></i>
+            </div>
+            <span class="text-sm font-medium text-white text-center">Course Management</span>
+          </a>
+
+          <!-- Tile 2 -->
+          <a href="#" class="bg-gradient-to-br from-purple-900/50 to-gray-800 hover:from-purple-900/70 rounded-xl p-6 shadow-lg border border-purple-900/30 flex flex-col items-center justify-center transition-all hover:scale-[1.03] group">
+            <div class="bg-purple-600/20 p-4 rounded-full mb-3 group-hover:bg-purple-600/30 transition-colors">
+              <i data-feather="user-plus" class="w-6 h-6 text-purple-400"></i>
+            </div>
+            <span class="text-sm font-medium text-white text-center">Student Enrollment</span>
+          </a>
+
+          <!-- Tile 3 -->
+          <a href="#" class="bg-gradient-to-br from-green-900/50 to-gray-800 hover:from-green-900/70 rounded-xl p-6 shadow-lg border border-green-900/30 flex flex-col items-center justify-center transition-all hover:scale-[1.03] group">
+            <div class="bg-green-600/20 p-4 rounded-full mb-3 group-hover:bg-green-600/30 transition-colors">
+              <i data-feather="clipboard" class="w-6 h-6 text-green-400"></i>
+            </div>
+            <span class="text-sm font-medium text-white text-center">Grade Center</span>
+          </a>
+
+          <!-- Tile 4 -->
+          <a href="#" class="bg-gradient-to-br from-amber-900/50 to-gray-800 hover:from-amber-900/70 rounded-xl p-6 shadow-lg border border-amber-900/30 flex flex-col items-center justify-center transition-all hover:scale-[1.03] group">
+            <div class="bg-amber-600/20 p-4 rounded-full mb-3 group-hover:bg-amber-600/30 transition-colors">
+              <i data-feather="dollar-sign" class="w-6 h-6 text-amber-400"></i>
+            </div>
+            <span class="text-sm font-medium text-white text-center">Financial Aid</span>
+          </a>
         </div>
       </div>
 
-      <div class="bg-gray-800 rounded-lg p-6 border-l-4 border-purple-500">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm font-medium text-gray-400">Exam Subjects</p>
-            <p class="text-2xl font-bold mt-1">32</p>
-          </div>
-          <div class="p-3 rounded-full bg-purple-900/50 text-purple-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-            </svg>
-          </div>
+      <!-- 📢 Recent Announcements -->
+      <div class="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl font-semibold text-white">Latest Announcements</h2>
+          <button class="text-blue-400 hover:text-blue-300 text-sm flex items-center">
+            View all <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+          </button>
         </div>
-      </div>
-    </div>
-
-    <!-- Upcoming Exams -->
-    <div class="bg-gray-800 rounded-lg p-6 mb-8">
-      <div class="flex items-center justify-between mb-4">
-        <h3 class="text-lg font-semibold">Upcoming Exams</h3>
-        <a href="#" class="text-sm text-indigo-400 hover:underline">View All</a>
-      </div>
-
-      <div class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-700">
-          <thead>
-            <tr>
-              <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Date & Time</th>
-              <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Subject</th>
-              <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Room</th>
-              <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Invigilator</th>
-              <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Status</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-700">
-            <tr>
-              <td class="px-4 py-3 whitespace-nowrap">
-                <p class="text-sm font-medium">Mon, Jun 5</p>
-                <p class="text-xs text-gray-400">9:00 AM - 12:00 PM</p>
-              </td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Mathematics</td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Room 101</td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Prof. Smith</td>
-              <td class="px-4 py-3 whitespace-nowrap">
-                <span class="px-2 py-1 text-xs rounded-full bg-green-900 text-green-300">Confirmed</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="px-4 py-3 whitespace-nowrap">
-                <p class="text-sm font-medium">Tue, Jun 6</p>
-                <p class="text-xs text-gray-400">2:00 PM - 5:00 PM</p>
-              </td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Physics</td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Room 203</td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Dr. Johnson</td>
-              <td class="px-4 py-3 whitespace-nowrap">
-                <span class="px-2 py-1 text-xs rounded-full bg-green-900 text-green-300">Confirmed</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="px-4 py-3 whitespace-nowrap">
-                <p class="text-sm font-medium">Wed, Jun 7</p>
-                <p class="text-xs text-gray-400">10:00 AM - 1:00 PM</p>
-              </td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Chemistry</td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Room 105</td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Prof. Williams</td>
-              <td class="px-4 py-3 whitespace-nowrap">
-                <span class="px-2 py-1 text-xs rounded-full bg-yellow-900 text-yellow-300">Pending</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Recent Activity and Room Availability -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <!-- Recent Activity -->
-      <div class="bg-gray-800 rounded-lg p-6">
-        <h3 class="text-lg font-semibold mb-4">Recent Activity</h3>
         <div class="space-y-4">
-          <div class="flex items-start">
-            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-900/50 flex items-center justify-center text-indigo-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-              </svg>
-            </div>
-            <div class="ml-3">
-              <p class="text-sm font-medium">New exam scheduled</p>
-              <p class="text-xs text-gray-400">Mathematics exam added for Jun 5 by Admin</p>
-              <p class="text-xs text-gray-500 mt-1">2 hours ago</p>
-            </div>
-          </div>
-
-          <div class="flex items-start">
-            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-green-900/50 flex items-center justify-center text-green-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <div class="ml-3">
-              <p class="text-sm font-medium">Invigilator confirmed</p>
-              <p class="text-xs text-gray-400">Prof. Smith confirmed for Physics exam</p>
-              <p class="text-xs text-gray-500 mt-1">5 hours ago</p>
+          <!-- Announcement 1 -->
+          <div class="p-4 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-blue-500/50 transition-colors cursor-pointer">
+            <div class="flex items-start space-x-3">
+              <div class="bg-blue-600/10 p-2 rounded-lg">
+                <i data-feather="megaphone" class="w-5 h-5 text-blue-400"></i>
+              </div>
+              <div>
+                <h3 class="text-sm font-medium text-white">Campus Renovation Updates</h3>
+                <p class="text-xs text-gray-400 mt-1">The Science Building expansion will begin on September 1st. Alternate arrangements have been made for all affected classes.</p>
+                <div class="flex items-center mt-2 text-xs text-gray-500">
+                  <i data-feather="clock" class="w-3 h-3 mr-1"></i>
+                  Posted 2 days ago • By Office of the Registrar
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="flex items-start">
-            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-900/50 flex items-center justify-center text-blue-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-              </svg>
-            </div>
-            <div class="ml-3">
-              <p class="text-sm font-medium">Room maintenance</p>
-              <p class="text-xs text-gray-400">Room 205 is now available after repairs</p>
-              <p class="text-xs text-gray-500 mt-1">1 day ago</p>
+          <!-- Announcement 2 -->
+          <div class="p-4 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-purple-500/50 transition-colors cursor-pointer">
+            <div class="flex items-start space-x-3">
+              <div class="bg-purple-600/10 p-2 rounded-lg">
+                <i data-feather="award" class="w-5 h-5 text-purple-400"></i>
+              </div>
+              <div>
+                <h3 class="text-sm font-medium text-white">Scholarship Applications Open</h3>
+                <p class="text-xs text-gray-400 mt-1">The Dean's Merit Scholarship application window is now open until October 15th. All sophomore students are eligible.</p>
+                <div class="flex items-center mt-2 text-xs text-gray-500">
+                  <i data-feather="clock" class="w-3 h-3 mr-1"></i>
+                  Posted 1 week ago • By Financial Aid Office
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Room Availability -->
-      <div class="bg-gray-800 rounded-lg p-6">
-        <h3 class="text-lg font-semibold mb-4">Room Availability</h3>
-        <div class="space-y-3">
-          <div>
-            <div class="flex justify-between text-sm mb-1">
-              <span>Room 101</span>
-              <span>80% booked</span>
-            </div>
-            <div class="w-full bg-gray-700 rounded-full h-2">
-              <div class="bg-indigo-500 h-2 rounded-full" style="width: 80%"></div>
-            </div>
-          </div>
-
-          <div>
-            <div class="flex justify-between text-sm mb-1">
-              <span>Room 203</span>
-              <span>60% booked</span>
-            </div>
-            <div class="w-full bg-gray-700 rounded-full h-2">
-              <div class="bg-indigo-500 h-2 rounded-full" style="width: 60%"></div>
-            </div>
-          </div>
-
-          <div>
-            <div class="flex justify-between text-sm mb-1">
-              <span>Room 105</span>
-              <span>45% booked</span>
-            </div>
-            <div class="w-full bg-gray-700 rounded-full h-2">
-              <div class="bg-indigo-500 h-2 rounded-full" style="width: 45%"></div>
-            </div>
-          </div>
-
-          <div>
-            <div class="flex justify-between text-sm mb-1">
-              <span>Room 301</span>
-              <span>30% booked</span>
-            </div>
-            <div class="w-full bg-gray-700 rounded-full h-2">
-              <div class="bg-indigo-500 h-2 rounded-full" style="width: 30%"></div>
-            </div>
-          </div>
-
-          <div>
-            <div class="flex justify-between text-sm mb-1">
-              <span>Room 205</span>
-              <span>15% booked</span>
-            </div>
-            <div class="w-full bg-gray-700 rounded-full h-2">
-              <div class="bg-indigo-500 h-2 rounded-full" style="width: 15%"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </div> --%>
     """
+    # TODO: create a more fitting university landing page
   end
 end

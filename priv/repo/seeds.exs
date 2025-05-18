@@ -1,6 +1,6 @@
 alias LobExams.Repo
 alias LobExams.{Accounts.User, CourseModule, University, Location, Room, Exam}
-# alias LobExams.UsersCourses
+alias LobExams.UsersCourses
 
 # 1. University
 university1 = Repo.insert!(%University{
@@ -90,7 +90,19 @@ room4 = Repo.insert!(%Room{
     university_id: university1.id)
 |> Repo.insert()
 
-user = %User{} |> User.registration_changeset(%{
+%User{}
+|> User.registration_changeset( %{
+    username: "Closed University",
+    firstname: "Test",
+    lastname: "university",
+    email: "university@lobexams.com",
+    role: "university",
+    confirmed_at: DateTime.utc_now(),
+    password: "universitypassword"},
+    university_id: university2.id)
+|> Repo.insert()
+
+{:ok, user1} = %User{} |> User.registration_changeset(%{
     username: "student1",
     firstname: "Test2",
     lastname: "Student",
@@ -101,7 +113,7 @@ user = %User{} |> User.registration_changeset(%{
     university_id: university1.id
   }) |> Repo.insert()
 
-user = %User{} |> User.registration_changeset(%{
+{:ok, user2} = %User{} |> User.registration_changeset(%{
   username: "student2",
   firstname: "Test2",
   lastname: "Student",
@@ -113,10 +125,26 @@ user = %User{} |> User.registration_changeset(%{
 }) |> Repo.insert()
 
 # 6. UsersCourses Join
-# Repo.insert!(%UsersCourses{
-#   user: user,
-#   course_module: course
-# })
+Repo.insert!(%UsersCourses{
+  user: user1,
+  course_module: course3
+})
+Repo.insert!(%UsersCourses{
+  user: user1,
+  course_module: course1
+})
+Repo.insert!(%UsersCourses{
+  user: user1,
+  course_module: course2
+})
+Repo.insert!(%UsersCourses{
+  user: user2,
+  course_module: course3
+})
+Repo.insert!(%UsersCourses{
+  user: user2,
+  course_module: course2
+})
 
 # 7. Exam
 Repo.insert!(%Exam{
@@ -124,4 +152,16 @@ Repo.insert!(%Exam{
   duration: 120,
   course_module: course1,
   room: room2
+})
+Repo.insert!(%Exam{
+  datetime: ~U[2025-06-01 12:00:00Z],
+  duration: 120,
+  course_module: course2,
+  room: room3
+})
+Repo.insert!(%Exam{
+  datetime: ~U[2025-06-01 14:00:00Z],
+  duration: 120,
+  course_module: course3,
+  room: room1
 })

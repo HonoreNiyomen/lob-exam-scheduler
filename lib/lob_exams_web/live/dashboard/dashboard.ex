@@ -33,7 +33,7 @@ defmodule LobExamsWeb.Live.Dashboard do
         ~H"""
         <%= LD.lecturer_dashboard(assigns, user_info(assigns)) %>
         """
-      "univirsity" ->
+      "university" ->
         ~H"""
         <%= UD.institution_dashboard(assigns) %>
         """
@@ -114,20 +114,26 @@ defmodule LobExamsWeb.Live.Dashboard do
           end)
 
       # map over locations
-      location_data = Enum.map(user_info.university.location, fn loc ->
-        loc_exams =
-          exams
-          |> Enum.filter(&(&1.room.location_id == loc.id))
-          |> Enum.count()
+      location_data =
+        if is_nil(user_info.university) do
+          []
+        else
+          Enum.map(user_info.university.location, fn loc ->
+            loc_exams =
+              exams
+              |> Enum.filter(&(&1.room.location_id == loc.id))
+              |> Enum.count()
 
-        %{
-          name: loc.mode,
-          address: loc.venue,
-          color: :red,
-          rooms: loc.rooms,
-          exams: loc_exams
-        }
-      end)
+            %{
+              name: loc.mode,
+              address: loc.venue,
+              color: :red,
+              rooms: loc.rooms,
+              exams: loc_exams
+            }
+          end)
+        end
+
 
       {courses, exam_entries, invigilators, user_info.university, location_data}
     else

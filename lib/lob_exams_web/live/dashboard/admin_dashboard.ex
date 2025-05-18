@@ -3,224 +3,306 @@ defmodule LobExamsWeb.Live.AdminDashboard do
 
   def admin_dashboard(assigns) do
     ~H"""
-    <!-- Stats Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-      <div class="bg-gray-800 rounded-lg p-6 border-l-4 border-indigo-500">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm font-medium text-gray-400">Scheduled Exams</p>
-            <p class="text-2xl font-bold mt-1">24</p>
-          </div>
-          <div class="p-3 rounded-full bg-indigo-900/50 text-indigo-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-          </div>
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+      <!-- Welcome Header -->
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+        <div>
+          <h1 class="text-3xl font-bold text-white">Welcome back, <span class="text-indigo-400">{@current_user.username}</span> 👋</h1>
+          <p class="text-gray-400 mt-2">Here's what's happening with your system today</p>
+        </div>
+        <div class="mt-4 md:mt-0 flex space-x-3">
+          <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center transition-all shadow-lg hover:shadow-indigo-500/20">
+            <i data-feather="plus" class="w-4 h-4 mr-2"></i>
+            Quick Action
+          </button>
+          <button class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg flex items-center transition-all border border-gray-700">
+            <i data-feather="refresh-cw" class="w-4 h-4 mr-2"></i>
+            Refresh
+          </button>
         </div>
       </div>
 
-      <div class="bg-gray-800 rounded-lg p-6 border-l-4 border-green-500">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm font-medium text-gray-400">Available Rooms</p>
-            <p class="text-2xl font-bold mt-1">12</p>
-          </div>
-          <div class="p-3 rounded-full bg-green-900/50 text-green-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-            </svg>
+      <!-- 🔥 Key Metrics (Animated Cards) -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <!-- System Health -->
+        <div class="bg-gradient-to-br from-green-900/50 to-gray-800 rounded-xl p-6 shadow-lg border border-green-900/30 hover:scale-[1.02] transition-transform">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-gray-400">System Health</p>
+              <h3 class="text-2xl font-bold text-white mt-1">Optimal</h3>
+              <p class="text-xs text-gray-400 mt-2 flex items-center">
+                <i data-feather="activity" class="w-3 h-3 mr-1 text-green-400"></i>
+                All systems operational
+              </p>
+            </div>
+            <div class="bg-green-600/20 p-3 rounded-full">
+              <i data-feather="server" class="w-6 h-6 text-green-400"></i>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="bg-gray-800 rounded-lg p-6 border-l-4 border-blue-500">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm font-medium text-gray-400">Active Invigilators</p>
-            <p class="text-2xl font-bold mt-1">18</p>
-          </div>
-          <div class="p-3 rounded-full bg-blue-900/50 text-blue-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
+        <!-- Active Users -->
+        <div class="bg-gradient-to-br from-blue-900/50 to-gray-800 rounded-xl p-6 shadow-lg border border-blue-900/30 hover:scale-[1.02] transition-transform">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-gray-400">Active Users</p>
+              <h3 class="text-2xl font-bold text-white mt-1">2,417</h3>
+              <p class="text-xs text-gray-400 mt-2 flex items-center">
+                <i data-feather="users" class="w-3 h-3 mr-1 text-blue-400"></i>
+                42 admins online
+              </p>
+            </div>
+            <div class="bg-blue-600/20 p-3 rounded-full">
+              <i data-feather="user-check" class="w-6 h-6 text-blue-400"></i>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="bg-gray-800 rounded-lg p-6 border-l-4 border-purple-500">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm font-medium text-gray-400">Exam Subjects</p>
-            <p class="text-2xl font-bold mt-1">32</p>
-          </div>
-          <div class="p-3 rounded-full bg-purple-900/50 text-purple-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-            </svg>
+        <!-- Pending Tasks -->
+        <div class="bg-gradient-to-br from-amber-900/50 to-gray-800 rounded-xl p-6 shadow-lg border border-amber-900/30 hover:scale-[1.02] transition-transform">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-gray-400">Pending Tasks</p>
+              <h3 class="text-2xl font-bold text-white mt-1">18</h3>
+              <p class="text-xs text-gray-400 mt-2 flex items-center">
+                <i data-feather="alert-circle" class="w-3 h-3 mr-1 text-amber-400"></i>
+                5 high priority
+              </p>
+            </div>
+            <div class="bg-amber-600/20 p-3 rounded-full">
+              <i data-feather="clock" class="w-6 h-6 text-amber-400"></i>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Upcoming Exams -->
-    <div class="bg-gray-800 rounded-lg p-6 mb-8">
-      <div class="flex items-center justify-between mb-4">
-        <h3 class="text-lg font-semibold">Upcoming Exams</h3>
-        <a href="#" class="text-sm text-indigo-400 hover:underline">View All</a>
-      </div>
-
-      <div class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-700">
-          <thead>
-            <tr>
-              <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Date & Time</th>
-              <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Subject</th>
-              <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Room</th>
-              <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Invigilator</th>
-              <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Status</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-700">
-            <tr>
-              <td class="px-4 py-3 whitespace-nowrap">
-                <p class="text-sm font-medium">Mon, Jun 5</p>
-                <p class="text-xs text-gray-400">9:00 AM - 12:00 PM</p>
-              </td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Mathematics</td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Room 101</td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Prof. Smith</td>
-              <td class="px-4 py-3 whitespace-nowrap">
-                <span class="px-2 py-1 text-xs rounded-full bg-green-900 text-green-300">Confirmed</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="px-4 py-3 whitespace-nowrap">
-                <p class="text-sm font-medium">Tue, Jun 6</p>
-                <p class="text-xs text-gray-400">2:00 PM - 5:00 PM</p>
-              </td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Physics</td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Room 203</td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Dr. Johnson</td>
-              <td class="px-4 py-3 whitespace-nowrap">
-                <span class="px-2 py-1 text-xs rounded-full bg-green-900 text-green-300">Confirmed</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="px-4 py-3 whitespace-nowrap">
-                <p class="text-sm font-medium">Wed, Jun 7</p>
-                <p class="text-xs text-gray-400">10:00 AM - 1:00 PM</p>
-              </td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Chemistry</td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Room 105</td>
-              <td class="px-4 py-3 whitespace-nowrap text-sm">Prof. Williams</td>
-              <td class="px-4 py-3 whitespace-nowrap">
-                <span class="px-2 py-1 text-xs rounded-full bg-yellow-900 text-yellow-300">Pending</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Recent Activity and Room Availability -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <!-- Recent Activity -->
-      <div class="bg-gray-800 rounded-lg p-6">
-        <h3 class="text-lg font-semibold mb-4">Recent Activity</h3>
-        <div class="space-y-4">
-          <div class="flex items-start">
-            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-900/50 flex items-center justify-center text-indigo-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-              </svg>
+        <!-- Storage -->
+        <div class="bg-gradient-to-br from-purple-900/50 to-gray-800 rounded-xl p-6 shadow-lg border border-purple-900/30 hover:scale-[1.02] transition-transform">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-gray-400">Storage Used</p>
+              <h3 class="text-2xl font-bold text-white mt-1">64%</h3>
+              <p class="text-xs text-gray-400 mt-2 flex items-center">
+                <i data-feather="database" class="w-3 h-3 mr-1 text-purple-400"></i>
+                1.8TB / 2.8TB
+              </p>
             </div>
-            <div class="ml-3">
-              <p class="text-sm font-medium">New exam scheduled</p>
-              <p class="text-xs text-gray-400">Mathematics exam added for Jun 5 by Admin</p>
-              <p class="text-xs text-gray-500 mt-1">2 hours ago</p>
-            </div>
-          </div>
-
-          <div class="flex items-start">
-            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-green-900/50 flex items-center justify-center text-green-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <div class="ml-3">
-              <p class="text-sm font-medium">Invigilator confirmed</p>
-              <p class="text-xs text-gray-400">Prof. Smith confirmed for Physics exam</p>
-              <p class="text-xs text-gray-500 mt-1">5 hours ago</p>
-            </div>
-          </div>
-
-          <div class="flex items-start">
-            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-900/50 flex items-center justify-center text-blue-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-              </svg>
-            </div>
-            <div class="ml-3">
-              <p class="text-sm font-medium">Room maintenance</p>
-              <p class="text-xs text-gray-400">Room 205 is now available after repairs</p>
-              <p class="text-xs text-gray-500 mt-1">1 day ago</p>
+            <div class="bg-purple-600/20 p-3 rounded-full">
+              <i data-feather="hard-drive" class="w-6 h-6 text-purple-400"></i>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Room Availability -->
-      <div class="bg-gray-800 rounded-lg p-6">
-        <h3 class="text-lg font-semibold mb-4">Room Availability</h3>
-        <div class="space-y-3">
-          <div>
-            <div class="flex justify-between text-sm mb-1">
-              <span>Room 101</span>
-              <span>80% booked</span>
-            </div>
-            <div class="w-full bg-gray-700 rounded-full h-2">
-              <div class="bg-indigo-500 h-2 rounded-full" style="width: 80%"></div>
-            </div>
-          </div>
-
-          <div>
-            <div class="flex justify-between text-sm mb-1">
-              <span>Room 203</span>
-              <span>60% booked</span>
-            </div>
-            <div class="w-full bg-gray-700 rounded-full h-2">
-              <div class="bg-indigo-500 h-2 rounded-full" style="width: 60%"></div>
+      <!-- 📊 Main Dashboard Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <!-- Activity Chart -->
+        <div class="lg:col-span-2 bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold text-white">System Activity</h2>
+            <div class="flex space-x-2">
+              <button class="px-3 py-1 text-xs rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600">Day</button>
+              <button class="px-3 py-1 text-xs rounded-lg bg-indigo-600 text-white">Week</button>
+              <button class="px-3 py-1 text-xs rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600">Month</button>
             </div>
           </div>
-
-          <div>
-            <div class="flex justify-between text-sm mb-1">
-              <span>Room 105</span>
-              <span>45% booked</span>
-            </div>
-            <div class="w-full bg-gray-700 rounded-full h-2">
-              <div class="bg-indigo-500 h-2 rounded-full" style="width: 45%"></div>
+          <div class="h-64 bg-gray-900/50 rounded-lg border border-gray-700 flex items-center justify-center">
+            <!-- Chart would go here -->
+            <div class="text-center p-4">
+              <i data-feather="bar-chart-2" class="w-12 h-12 text-gray-600 mx-auto mb-2"></i>
+              <p class="text-gray-500">User activity visualization</p>
             </div>
           </div>
+        </div>
 
-          <div>
-            <div class="flex justify-between text-sm mb-1">
-              <span>Room 301</span>
-              <span>30% booked</span>
+        <!-- Quick Actions -->
+        <div class="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700">
+          <h2 class="text-xl font-semibold text-white mb-6">Quick Actions</h2>
+          <div class="grid grid-cols-2 gap-4">
+            <button class="bg-gray-900 hover:bg-gray-700 p-4 rounded-lg flex flex-col items-center transition-colors border border-gray-700">
+              <div class="bg-indigo-600/10 p-3 rounded-full mb-2">
+                <i data-feather="user-plus" class="w-5 h-5 text-indigo-400"></i>
+              </div>
+              <span class="text-sm font-medium text-white">Add User</span>
+            </button>
+            <button class="bg-gray-900 hover:bg-gray-700 p-4 rounded-lg flex flex-col items-center transition-colors border border-gray-700">
+              <div class="bg-purple-600/10 p-3 rounded-full mb-2">
+                <i data-feather="settings" class="w-5 h-5 text-purple-400"></i>
+              </div>
+              <span class="text-sm font-medium text-white">Settings</span>
+            </button>
+            <button class="bg-gray-900 hover:bg-gray-700 p-4 rounded-lg flex flex-col items-center transition-colors border border-gray-700">
+              <div class="bg-blue-600/10 p-3 rounded-full mb-2">
+                <i data-feather="database" class="w-5 h-5 text-blue-400"></i>
+              </div>
+              <span class="text-sm font-medium text-white">Backup</span>
+            </button>
+            <button class="bg-gray-900 hover:bg-gray-700 p-4 rounded-lg flex flex-col items-center transition-colors border border-gray-700">
+              <div class="bg-green-600/10 p-3 rounded-full mb-2">
+                <i data-feather="shield" class="w-5 h-5 text-green-400"></i>
+              </div>
+              <span class="text-sm font-medium text-white">Security</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity & Notifications -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <!-- Recent Activity -->
+        <div class="lg:col-span-2 bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700">
+          <h2 class="text-xl font-semibold text-white mb-6">Recent Activity</h2>
+          <div class="space-y-4">
+            <!-- Activity Item 1 -->
+            <div class="flex items-start space-x-4 p-3 hover:bg-gray-700/50 rounded-lg transition-colors">
+              <div class="bg-indigo-600/10 p-2 rounded-full">
+                <i data-feather="user" class="w-5 h-5 text-indigo-400"></i>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-white">New admin user created</p>
+                <p class="text-xs text-gray-400 mt-1">Sarah Johnson • 15 min ago</p>
+              </div>
+              <span class="ml-auto text-xs px-2 py-1 bg-gray-900 rounded-full text-gray-300">User</span>
             </div>
-            <div class="w-full bg-gray-700 rounded-full h-2">
-              <div class="bg-indigo-500 h-2 rounded-full" style="width: 30%"></div>
+
+            <!-- Activity Item 2 -->
+            <div class="flex items-start space-x-4 p-3 hover:bg-gray-700/50 rounded-lg transition-colors">
+              <div class="bg-green-600/10 p-2 rounded-full">
+                <i data-feather="database" class="w-5 h-5 text-green-400"></i>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-white">Nightly backup completed</p>
+                <p class="text-xs text-gray-400 mt-1">System • 2 hours ago</p>
+              </div>
+              <span class="ml-auto text-xs px-2 py-1 bg-gray-900 rounded-full text-gray-300">System</span>
+            </div>
+
+            <!-- Activity Item 3 -->
+            <div class="flex items-start space-x-4 p-3 hover:bg-gray-700/50 rounded-lg transition-colors">
+              <div class="bg-amber-600/10 p-2 rounded-full">
+                <i data-feather="alert-triangle" class="w-5 h-5 text-amber-400"></i>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-white">Security alert detected</p>
+                <p class="text-xs text-gray-400 mt-1">Firewall • 4 hours ago</p>
+              </div>
+              <span class="ml-auto text-xs px-2 py-1 bg-gray-900 rounded-full text-gray-300">Security</span>
             </div>
           </div>
+          <button class="text-indigo-400 hover:text-indigo-300 text-sm flex items-center mt-4">
+            View all activity <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+          </button>
+        </div>
 
-          <div>
-            <div class="flex justify-between text-sm mb-1">
-              <span>Room 205</span>
-              <span>15% booked</span>
+        <!-- Notifications -->
+        <div class="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold text-white">Notifications</h2>
+            <span class="text-xs px-2 py-1 bg-indigo-900/30 rounded-full text-indigo-400">3 New</span>
+          </div>
+          <div class="space-y-4">
+            <!-- Notification 1 -->
+            <div class="p-3 bg-gray-900/50 rounded-lg border border-gray-700">
+              <div class="flex items-start space-x-3">
+                <div class="bg-indigo-600/10 p-2 rounded-full">
+                  <i data-feather="alert-circle" class="w-5 h-5 text-indigo-400"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-white">System update available</p>
+                  <p class="text-xs text-gray-400 mt-1">Version 2.5.3 ready to install</p>
+                </div>
+              </div>
             </div>
-            <div class="w-full bg-gray-700 rounded-full h-2">
-              <div class="bg-indigo-500 h-2 rounded-full" style="width: 15%"></div>
+
+            <!-- Notification 2 -->
+            <div class="p-3 bg-gray-900/50 rounded-lg border border-gray-700">
+              <div class="flex items-start space-x-3">
+                <div class="bg-green-600/10 p-2 rounded-full">
+                  <i data-feather="check-circle" class="w-5 h-5 text-green-400"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-white">Backup successful</p>
+                  <p class="text-xs text-gray-400 mt-1">All databases secured</p>
+                </div>
+              </div>
             </div>
+
+            <!-- Notification 3 -->
+            <div class="p-3 bg-gray-900/50 rounded-lg border border-gray-700">
+              <div class="flex items-start space-x-3">
+                <div class="bg-red-600/10 p-2 rounded-full">
+                  <i data-feather="bell" class="w-5 h-5 text-red-400"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-white">Unauthorized login attempt</p>
+                  <p class="text-xs text-gray-400 mt-1">From IP: 192.168.1.45</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="text-gray-400 hover:text-white text-sm flex items-center justify-center w-full mt-4">
+            Mark all as read
+          </button>
+        </div>
+      </div>
+
+      <!-- Recent Users -->
+      <div class="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl font-semibold text-white">Recently Active Users</h2>
+          <button class="text-indigo-400 hover:text-indigo-300 text-sm flex items-center">
+            View all <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+          </button>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <!-- User 1 -->
+          <div class="flex flex-col items-center">
+            <div class="relative mb-2">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-12 h-12 rounded-full border-2 border-indigo-500">
+              <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-800"></span>
+            </div>
+            <span class="text-sm font-medium text-white">Sarah J.</span>
+            <span class="text-xs text-gray-400">Admin</span>
+          </div>
+
+          <!-- User 2 -->
+          <div class="flex flex-col items-center">
+            <div class="relative mb-2">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-12 h-12 rounded-full border-2 border-gray-700">
+              <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-800"></span>
+            </div>
+            <span class="text-sm font-medium text-white">Michael T.</span>
+            <span class="text-xs text-gray-400">Moderator</span>
+          </div>
+
+          <!-- User 3 -->
+          <div class="flex flex-col items-center">
+            <div class="relative mb-2">
+              <img src="https://randomuser.me/api/portraits/women/68.jpg" class="w-12 h-12 rounded-full border-2 border-gray-700">
+              <span class="absolute bottom-0 right-0 w-3 h-3 bg-gray-500 rounded-full border-2 border-gray-800"></span>
+            </div>
+            <span class="text-sm font-medium text-white">Lisa M.</span>
+            <span class="text-xs text-gray-400">Editor</span>
+          </div>
+
+          <!-- User 4 -->
+          <div class="flex flex-col items-center">
+            <div class="relative mb-2">
+              <img src="https://randomuser.me/api/portraits/men/75.jpg" class="w-12 h-12 rounded-full border-2 border-gray-700">
+              <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-800"></span>
+            </div>
+            <span class="text-sm font-medium text-white">David K.</span>
+            <span class="text-xs text-gray-400">Analyst</span>
+          </div>
+
+          <!-- User 5 -->
+          <div class="flex flex-col items-center">
+            <div class="relative mb-2">
+              <img src="https://randomuser.me/api/portraits/women/25.jpg" class="w-12 h-12 rounded-full border-2 border-gray-700">
+              <span class="absolute bottom-0 right-0 w-3 h-3 bg-gray-500 rounded-full border-2 border-gray-800"></span>
+            </div>
+            <span class="text-sm font-medium text-white">Emma R.</span>
+            <span class="text-xs text-gray-400">Viewer</span>
           </div>
         </div>
       </div>

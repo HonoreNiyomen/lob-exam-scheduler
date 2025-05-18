@@ -15,7 +15,7 @@ defmodule LobExamsWeb.Live.LecturerDashboard do
       <!-- Welcome Header with Status -->
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
         <div>
-          <h1 class="text-3xl font-bold text-white">Professor <span class="text-indigo-400">Sarah Johnson</span></h1>
+          <h1 class="text-3xl font-bold text-white">Professor <span class="text-indigo-400">{@current_user.firstname<>" "<>@current_user.lastname}</span></h1>
           <div class="flex items-center mt-2 space-x-4">
             <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-600/20 text-green-400">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

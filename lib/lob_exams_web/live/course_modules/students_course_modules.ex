@@ -1,4 +1,4 @@
-defmodule LobExamsWeb.Live.StudentsCourseModulesLive do
+defmodule LobExamsWeb.Live.StudentsCourseModules do
   use LobExamsWeb, :live_view
 
   @impl true

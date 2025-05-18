@@ -3,7 +3,6 @@ defmodule LobExamsWeb.Live.Exams do
 
   alias LobExamsWeb.UpcomingExams, as: UE
 
-  @impl true
   def mount(_params, _session, socket) do
     {:ok, assign(socket, :page_title, "Upcoming Exams")}
   end
@@ -12,7 +11,7 @@ defmodule LobExamsWeb.Live.Exams do
     case assigns[:current_user].role do
       "admin" ->
         ~H"""
-        <%= UE.admin_upcoming_exams(assigns) %>
+        {UE.admin_upcoming_exams(assigns)}
         """
       "student" ->
         ~H"""
@@ -24,7 +23,7 @@ defmodule LobExamsWeb.Live.Exams do
         """
       "univirsity" ->
         ~H"""
-        <%= UE.university_upcoming_exams(assigns) %>
+        {UE.university_upcoming_exams(assigns)}
         """
       _ ->
         ~H"""

@@ -199,9 +199,12 @@ defmodule LobExamsWeb.UpcomingExams do
     """
   end
 
-  
-
   def admin_upcoming_exams(assigns) do
+    ~H"""
+    """
+  end
+
+  def lecturer_upcoming_exams(assigns) do
     ~H"""
     """
   end

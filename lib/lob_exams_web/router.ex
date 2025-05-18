@@ -56,7 +56,8 @@ defmodule LobExamsWeb.Router do
         live "/assigned_invigilators", StudentInvigilators
         live "/rooms", Rooms
         live "/course_modules", CourseModules
-        live "/courses", StudentsCourseModulesLive
+        live "/courses", StudentsCourseModules
+        live "/manage_insititutions", Insititutions
         live "/general_settings", Settings
         live "/users/settings", UserSettings, :edit
         live "/users/settings/confirm_email/:token", UserSettings, :confirm_email

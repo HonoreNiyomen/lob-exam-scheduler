@@ -58,6 +58,14 @@ defmodule LobExamsWeb.Layouts.AdminSideNav do
             <span>Course Modules</span>
           </a>
 
+          <%= if @current_admin.role == "admin" do %>
+            <a href="/manage_insititutions" class={["flex items-center space-x-2 px-3 py-2 rounded text-gray-300",
+                @conn.request_path == "/manage_insititutions" && "bg-gray-900", @conn.request_path != "/manage_insititutions" && "hover:bg-gray-700"]}>
+              <i class="fas fa-building mr-3"></i>
+              <span>Institutions</span>
+            </a>
+          <% end %>
+
           <a href="/general_settings" class={["flex items-center space-x-2 px-3 py-2 rounded text-gray-300",
               @conn.request_path == "/general_settings" && "bg-gray-900", @conn.request_path != "/general_settings" && "hover:bg-gray-700"]}>
             <i class="fas fa-cog mr-3"></i>
