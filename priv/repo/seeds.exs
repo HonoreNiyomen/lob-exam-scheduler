@@ -78,6 +78,18 @@ room4 = Repo.insert!(%Room{
     password: "adminpassword"})
 |> Repo.insert()
 
+%User{}
+|> User.registration_changeset( %{
+    username: "Lecturer",
+    firstname: "Test",
+    lastname: "Staff",
+    email: "lecturer@lobexams.com",
+    role: "lecturer",
+    confirmed_at: DateTime.utc_now(),
+    password: "lecturerpassword"},
+    university_id: university1.id)
+|> Repo.insert()
+
 user = %User{} |> User.registration_changeset(%{
     username: "student1",
     firstname: "Test2",
@@ -109,6 +121,7 @@ user = %User{} |> User.registration_changeset(%{
 # 7. Exam
 Repo.insert!(%Exam{
   datetime: ~U[2025-06-01 09:00:00Z],
+  duration: 120,
   course_module: course1,
   room: room2
 })

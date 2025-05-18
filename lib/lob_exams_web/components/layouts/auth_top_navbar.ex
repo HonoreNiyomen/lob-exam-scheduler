@@ -19,11 +19,10 @@ defmodule LobExamsWeb.Layouts.AdminTopNav do
       </div>
 
       <div class="hidden md:flex md:flex-col p-1 border-b border-gray-700">
-        <h1 class="text-xl font-bold text-indigo-400">LOB Flow</h1>
-        <p class="text-xs text-gray-400">Exam Scheduling Platform</p>
+        <h1 class="text-xl font-bold text-indigo-600">{@current_admin.firstname<>" "<>@current_admin.lastname}</h1>
       </div>
 
-      <h2 class="text-xl font-semibold">{@current_page}</h2>
+      <h2 class="text-xl font-semibold">{String.upcase(@current_page)}</h2>
 
       <div class="flex items-center space-x-4">
         <div class="hidden md:flex relative inline-flex items-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-blue-700 focus:outline-none">

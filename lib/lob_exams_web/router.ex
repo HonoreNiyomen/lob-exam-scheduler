@@ -49,11 +49,14 @@ defmodule LobExamsWeb.Router do
 
     live_session :require_authenticated_user,
       on_mount: [{LobExamsWeb.UserAuth, :ensure_authenticated}] do
-        live "/dashboard", AdminDashboard
-        live "/schedule_exams", ScheduleExams
+        live "/dashboard", Dashboard
+        live "/exam_schedule", ScheduleExams
+        live "/upcoming_exams", Exams
         live "/invigilators", Invigilators
+        live "/assigned_invigilators", StudentInvigilators
         live "/rooms", Rooms
         live "/course_modules", CourseModules
+        live "/courses", StudentsCourseModulesLive
         live "/general_settings", Settings
         live "/users/settings", UserSettings, :edit
         live "/users/settings/confirm_email/:token", UserSettings, :confirm_email

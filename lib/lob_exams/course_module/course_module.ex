@@ -13,6 +13,8 @@ defmodule LobExams.CourseModule do
       on_delete: :delete_all,
       on_replace: :delete
 
+    has_many :exams, LobExams.Exam
+    has_one  :invigilator, through: [:exams, :invigilator]
     timestamps(type: :utc_datetime)
   end
 

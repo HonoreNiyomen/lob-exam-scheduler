@@ -87,3 +87,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 })
+
+document.getElementById('toggleAllExams').addEventListener('click', function() {
+    this.classList.toggle('bg-gray-800');
+    this.classList.toggle('bg-indigo-600');
+
+    const icon = this.querySelector('i');
+    const allExamCards = document.querySelectorAll('.all-exam');
+
+    if (this.classList.contains('bg-indigo-600')) {
+      this.innerHTML = '<i data-feather="eye-off" class="w-4 h-4 mr-2"></i> Hide Other Exams';
+      allExamCards.forEach(card => card.classList.remove('hidden'));
+    } else {
+      this.innerHTML = '<i data-feather="list" class="w-4 h-4 mr-2"></i> View All Exams';
+      allExamCards.forEach(card => card.classList.add('hidden'));
+    }
+
+    feather.replace(); // Refresh icons
+  });
+
+  // Initialize feather icons
+  feather.replace();

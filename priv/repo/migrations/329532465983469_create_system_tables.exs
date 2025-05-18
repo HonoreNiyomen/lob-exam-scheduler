@@ -68,8 +68,10 @@ defmodule LobExams.Repo.Migrations.CreateUsersAuthTables do
 
     create_if_not_exists table(:exams) do
       add :datetime, :utc_datetime
+      add :duration, :integer
       add :course_module_id, references(:course_modules, on_delete: :nothing)
       add :room_id, references(:rooms, on_delete: :nothing)
+      add :invigilator_id, references(:users, on_delete: :nothing)
 
       timestamps(type: :utc_datetime)
     end
