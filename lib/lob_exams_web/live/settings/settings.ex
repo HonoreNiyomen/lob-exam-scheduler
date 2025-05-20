@@ -20,7 +20,7 @@ defmodule LobExamsWeb.Live.Settings do
 
       "university" ->
         ~H"""
-        {IS.insitution_settings(assigns)}
+        {IS.institution_settings(assigns)}
         """
 
       _ ->
